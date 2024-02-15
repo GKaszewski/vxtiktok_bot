@@ -59,7 +59,7 @@ async fn get_long_url_from_short_url(url: &str) -> Option<String> {
             match location.to_str() {
                 Ok(location) => {
                     if is_long_url(location) {
-                        return Some(location.to_string());
+                        return Some(replace_long_url(location));
                     } else {
                         return None;
                     }
@@ -72,7 +72,7 @@ async fn get_long_url_from_short_url(url: &str) -> Option<String> {
         }
     }
 
-    Some(long_url)
+    Some(replace_long_url(&long_url))
 }
 
 #[async_trait]
